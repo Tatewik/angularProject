@@ -1,0 +1,124 @@
+<nav id="navigation">
+  <div class="nav-icon-block">
+    <a href="#">
+      <i class="icon icon-expand"></i>
+    </a>
+    <div class="clear"></div>
+  </div>
+  <ul>
+    <li class="active">
+      <a href="#">
+        <i class="icon icon-project"></i>
+        <span>Project</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<main class="project-main">
+  <header>
+    <img class="main-logo" alt="">
+    <h1>Projects</h1>
+    <div class="clear"></div>
+  </header>
+  <div class="main-content">
+    <div class="content project-content">
+      <h2 class="main-title">Projects list</h2>
+      <table class="shell-project-table">
+
+        <thead>
+        <tr>
+          <th></th>
+          <th>Project code</th>
+          <th>Project title</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+
+
+        <tr *ngFor="let project of projects; let idx = index">
+          <td>{{idx + 1}}</td>
+          <td>{{project.code}}</td>
+          <td>{{project.title}}</td>
+          <td>
+
+            <button type="button" class="btn btn-default btn-sm" (click)="redirect(project.id)">
+              <span class="glyphicon glyphicon-edit portfolio-button" > Edit</span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-trash portfolio-button" (click)="deleteProject(project.id)"> Delete</span>
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+      <button class="main-button" (click)="redirect(-1)">Add</button>
+    </div>
+  </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<header>
+  <img src="img/logo.png" class="main-logo" alt="">
+  <h1>Projects</h1>
+  <div class="clear"></div>
+</header>
+<div class="body">
+
+  <div class="main-content">
+    <div class="content project-content">
+      <h2 class="main-title">Projects list</h2>
+      <table class="shell-project-table">
+
+        <thead>
+        <tr>
+          <th></th>
+          <th>Project code</th>
+          <th>Project title</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+
+
+        <tr *ngFor="let project of projects; let idx = index">
+          <td>{{idx + 1}}</td>
+          <td>{{project.code}}</td>
+          <td>{{project.title}}</td>
+          <td><button>Edit</button></td>
+          <td><button>Delete</button></td>
+        </tr>
+
+        </tbody>
+      </table>
+      <button class="main-button" (click)="redirect()">Add</button>
+    </div>
+  </div>
+</div>
+
+
+-->
+

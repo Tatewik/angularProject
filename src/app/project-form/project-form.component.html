@@ -1,0 +1,234 @@
+
+<header class="project-header">
+  <div class="container">
+    <h1>New project</h1>
+  </div>
+</header>
+<div class="container new-project-container">
+  <div class="new-project-content">
+    <form #form ="ngForm">
+      <section class="general-information form-group">
+        <h2>General Information</h2>
+        <div class="project-title-and-code">
+          <div class="project-code">
+            <label for="#project-code" >Project Code<span class="asterisk">*</span></label>
+            <input type="text" name="project-code" id="project-code" [(ngModel)]="project.code">
+          </div>
+          <div class="project-title">
+            <label for="#project-title">Project title<span class="asterisk">*</span></label>
+            <input type="text" name="project-title" id="project-title" [(ngModel)]="project.title">
+          </div>
+        </div>
+
+        <div class="description">
+          <div >
+            <label for="description">Description<span class="asterisk">*</span></label>
+            <textarea id="description" name="description" [(ngModel)]="project.description"></textarea>
+          </div>
+        </div>
+        <div class="implementation-status">
+          <label>Implementation Status<span class="asterisk">*</span></label>
+          <select class="implementation-status">
+            <option *ngFor="let implStatus of implementationStatusesList">{{implStatus.name}}</option>
+
+
+          </select>
+        </div>
+
+        <project-form-duration-app [startDate]="project.startDate" [endDate]="project.endDate"></project-form-duration-app>
+      </section>
+
+
+      <section class="project-location">
+        <h2>Project Location</h2>
+
+        <table class="location-table">
+          <tr>
+            <th>Country</th>
+            <th>Districts</th>
+            <th>Percent %</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+
+        </table>
+
+
+        <button type="button" class="main-button  add_button" id="add_contact_button" data-toggle="modal" data-target="#myModal" (click)="" )>Add</button>
+      </section>
+
+      <section class="sectors form-group" ngModelGroup="sectorsTable" #sectorsTable="ngModelGroup">
+        <h2>Sectors (in line table)</h2>
+        <div>
+          <table *ngIf="project.sectors" class="contacts-table">
+            <tr>
+              <td>Sector Name</td>
+              <td>Percent %</td>
+            </tr>
+            <tr *ngFor="let data of project.sectors">
+
+              <td>{{data.sector.name}}</td>
+              <td>{{data.percent}}</td>
+            </tr>
+
+
+          </table>
+        </div>
+        <div>
+
+          <div class="sector-name">
+
+
+
+            <label>Sector Name<span class="asterisk">*</span></label>
+            <select name="sector-name" id="sector-name" class="sector-name" #sectorId>
+              <option *ngFor="let sector of sectorsList" value="{{sector.id}}">{{sector.name}}</option>
+            </select>
+
+
+          </div>
+
+
+          <div class="percent">
+            <label for="#percent">Percent<span class="asterisk">*</span></label>
+            <input type="text"  #percentInput  name="percent" id="percent">
+          </div>
+          <button type="button" class="main-button  add_button"  (click)="addSector(percentInput.value, +sectorId.value)" >Add</button>
+        </div>
+      </section>
+
+
+      <!-- Trigger the modal with a button -->
+
+
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add project Location</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <label>Country <span class="asterisk">*</span></label>
+                <select>
+                  <option *ngFor="let country of countriesList">{{country.name}}</option>
+                </select>
+              </div>
+              <div>
+                <label>District <span class="asterisk">*</span></label>
+                <select>
+                  <option *ngFor="let district of districtsList">{{district.name}}</option>
+                </select>
+              </div>
+              <div>
+                <label>Percent %</label>
+                <input type="text">
+              </div>
+          </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default main-button  add_button" data-dismiss="modal">Add</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+<!--      <div id="myModalOrg" class="modal">
+        &lt;!&ndash; Modal content &ndash;&gt;
+        <div class="modal-content">
+          <div class="popuptext" id="myPopup">
+            <div class="popup_header">
+              <h2>Add Organisation</h2>
+              <span class="org_ic_del popup_icon_delete icon-delete "></span>
+            </div>
+            <div class="popup_conteiner">
+              <div class="popup_input add_organisation_name">
+                <label for="#add_organisation_name">First name<span class="asterisk">*</span>
+                </label>
+                <input type="text" name="add_organisation_name" id="add_organisation_name">
+              </div>
+              <div class="add_organisation_description">
+                <label for="#add_organisation_description">Description<span class="asterisk">*</span>
+                </label>
+                <textarea name="add_organisation_description" id="add_organisation_description"></textarea>
+              </div>
+              <div class="popup_buttons">
+                <button class="popup_add_organisation_cancel_button main-button"id="popup_cancel_button">CANCEL</button>
+                <button class="main-button" id="popup_ok_button">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="project-nav">
+
+        <button class="main-button cancel" (click)="redirect()" >CANCEL</button>
+        <button class="main-button save" (click)="save()" [disabled]="form.valid" >SAVE</button>
+        <button class="main-button save-close" (click)="saveAndClose()" [disabled]="!form.valid">SAVE &amp; CLOSE</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<header class="header">
+  <div></div>
+  <div class="div-button">
+    <button class="button" (click)="redirect()">CLOSE</button>
+    <button class="button">SAVE</button>
+    <button class="button" (click)="redirect()">SAVE & CLOSE</button>
+  </div>
+</header>
+-->

@@ -1,0 +1,16 @@
+<div class="date">
+  <div class="start-date">
+    <label for="#start-date" >Start Date<span class="asterisk">*</span></label>
+    <input  ngModel required [ngModel]="startDate" (ngModelChange)="startDate = $event"   type="date" name="start-date" id="start-date" (change)="timeDiff()">
+  </div>
+  <div class="end-date">
+    <label for="#end-date">End Date<span class="asterisk">*</span></label>
+    <input [ngModel]="endDate " (ngModelChange)="endDate = $event" type="date" name="end-date" id="end-date" (change)="timeDiff()">
+  </div>
+  <div class="duration">
+    <label for="#duration">Duration<span class="asterisk">*</span></label>
+    <input type="text" name="duration" id="duration" [(ngModel)]="duration">
+  </div>
+</div>
+<!--
+| date:'yyyy-MM-dd'-->
